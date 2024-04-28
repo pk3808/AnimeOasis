@@ -1,0 +1,44 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  body {
+    /* background-image: url("../src/assets/bg.png"); */
+  background-color: "#fffafa";
+    background-size: cover;
+    background-position: center;
+  }
+
+/* index.css or app.css */
+/* Customize scrollbar */
+/* Works only for webkit based browsers like Chrome and Safari */
+/* For Firefox, you may need to use different selectors and properties */
+
+/* Track */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 10px;
+    background-color:transparent;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 4px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #cf5a5a;
+  }
+  .anime-card {
+    max-width: 200px; /* Set your initial max-width here */
+  }
+  
+  .anime-card:hover {
+    max-width: 450px; /* Set the expanded width on hover */
+  }
+  
+  
