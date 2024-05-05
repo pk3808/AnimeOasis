@@ -1,12 +1,12 @@
-import bg from "../assets/bg.png";
-import logo from "../assets/logo.png";
-import { animeData } from "../services/api";
+import bg from "../../assets/whitebg.jpg";
+import logo from "../../assets/logo.png";
+import { animeData } from "../../services/api";
 import AnimeCard from "./AnimeCard";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { BsFire } from "react-icons/bs";
 import { MdOutlineLocationSearching } from "react-icons/md";
-import "../App.css";
+import "../../App.css";
 import { background } from "@chakra-ui/react";
 
 const styles = {
