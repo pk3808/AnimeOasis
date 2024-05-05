@@ -1,7 +1,7 @@
 import bg from "../../assets/bg.png";
 import logo from "../../assets/logo.png";
 import { mangaData } from "../../services/api";
-import MangaCard from "../Manga/MangaCard";
+import MangaCard from "./Mangacard";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { BsFire } from "react-icons/bs";
@@ -75,7 +75,7 @@ console.log(anime, "anime");
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyPress={handleKeyPress}
           type="search"
-          placeholder="Search your anime"
+          placeholder="Search your manga"
           className="px-4 py-2 ml-[30%] bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white"
         />
         <button

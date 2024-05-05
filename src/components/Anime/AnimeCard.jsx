@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaYoutube } from "react-icons/fa6";
-import YoutubeModal from "../components/YoutubeModal.jsx";
-import Modal from "../components/Modal.jsx";
+import YoutubeModal from "./YoutubeModal.jsx";
+import Modal from "./Modal.jsx";
 
 function AnimeCard({ anime }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);

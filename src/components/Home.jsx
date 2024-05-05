@@ -53,26 +53,27 @@ function Home() {
   return (
     <div style={styles}>
       <div className="absolute top-0 w-full flex justify-left items-start pl-4 mt-4">
-        <div className="flex w-[6%] h-[6%]" >
-        <img className="" src={logo} alt="Logo" />
+        <div className="flex w-[6%] h-[6%]">
+          <img className="" src={logo} alt="Logo" />
         </div>
         <div className="flex ml-[44%] mt-4 text-#082567">
           <button
-          onClick={() => navigate("MangaAll")}
+            onClick={() => navigate("AnimeAll")}
             className="ml-4  text-2xl font-bold hover:text-pink-700 transition duration-300 ease-in-out transform hover:-translate-y-1 
         hover:scale-110"
           >
             {" "}
-            Manga
-          </button>
-          <button
-            onClick={() => navigate("AnimeAll")}
-            className="ml-20 text-#002244 text-2xl font-bold hover:text-pink-700 transition duration-300 ease-in-out transform hover:-translate-y-1 
-        hover:scale-110"
-          >
             Anime
           </button>
           <button
+            onClick={() => navigate("MangaAll")}
+            className="ml-20 text-#002244 text-2xl font-bold hover:text-pink-700 transition duration-300 ease-in-out transform hover:-translate-y-1 
+        hover:scale-110"
+          >
+            Manga
+          </button>
+          <button
+            onClick={() => navigate("NovelAll")}
             className="ml-20 text-#002244 text-2xl font-bold hover:text-pink-700 transition duration-300 ease-in-out transform hover:-translate-y-1 
         hover:scale-110"
           >
@@ -80,13 +81,13 @@ function Home() {
             Novel
           </button>
           <button
+           onClick={() => navigate("About")}
             className="ml-20 text-#002244  text-2xl font-bold hover:text-pink-700 transition duration-300 ease-in-out transform hover:-translate-y-1 
         hover:scale-110"
           >
             {" "}
             About
           </button>
-  
         </div>
       </div>
       <div
@@ -136,7 +137,7 @@ function Home() {
           Born, and Every Episode Unveils a New Chapter of Intrigue and Wonder.
         </p>
         <button
-          onClick={() => navigate("AnimeAll")}
+          onClick={() => navigate("Explore")}
           className="bg-pink-700 hover:bg-pink-500 w-[20%] text-white font-bold py-2 px-4 rounded ml-4"
         >
           Explore Now
