@@ -1,7 +1,7 @@
 import bg from "../../assets/bg.png";
 import logo from "../../assets/logo.png";
 import { mangaData } from "../../services/api";
-import MangaCard from "./Mangacard";
+import MangaCard from "../Manga/Mangacard";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { BsFire } from "react-icons/bs";
