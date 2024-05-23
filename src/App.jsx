@@ -6,6 +6,7 @@ import MangaAll from"./components/Manga/MangaAll";
 import NovelAll from "./components/Novel/NovelAll";
 import Explore from "./components/Explore";
 import About from "./components/About";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 function App() {
   return(
     <Routes>
@@ -15,6 +16,7 @@ function App() {
     <Route path="/NovelAll" element={<NovelAll />}></Route>
     <Route path="/Explore" element={<Explore />}></Route>
     <Route path="/About" element={<About />}></Route>
+    <Route path="/PrivacyPolicy" element={<PrivacyPolicy />}></Route>
   </Routes>
   )
 }

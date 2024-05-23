@@ -1,13 +1,24 @@
+import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import { BsFire } from "react-icons/bs";
+import { MdOutlineLocationSearching } from "react-icons/md";
+import { GiAbstract050 } from "react-icons/gi";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Button,
+  useDisclosure,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import bg from "../../assets/bg.png";
 import logo from "../../assets/logo.png";
 import { mangaData } from "../../services/api";
 import MangaCard from "./MangaCard";
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from "react";
-import { BsFire } from "react-icons/bs";
-import { MdOutlineLocationSearching } from "react-icons/md";
 import "../../App.css";
-import { background } from "@chakra-ui/react";
 
 const styles = {
   backgroundImage: `url(${bg})`,
@@ -22,6 +33,9 @@ function MangaAll() {
   const [anime, setAnime] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
+  const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
 
   useEffect(() => {
     fetchData();
@@ -42,7 +56,7 @@ function MangaAll() {
       console.error("Error fetching anime data:", error);
     }
   };
-console.log(anime, "anime");
+
   const handleGenreSelect = (genre) => {
     setSelectedGenre(genre);
     setSearchQuery(''); // Reset search query when selecting genre
@@ -64,55 +78,117 @@ console.log(anime, "anime");
 
   return (
     <div style={styles}>
-      <div className="absolute top-0 w-full flex items-center px-4 py-2">
-        <button className="w-[6%] h-[6%]">
+      <div className="absolute top-0 w-full flex items-center px-4 py-2 justify-between">
+        <button className="w-[14%] h-[14%] lg:w-[6%] lg:h-[6%]">
           <Link to="/">
             <img src={logo} alt="Logo" />
           </Link>
         </button>
 
-        <input
-          onChange={(e) => setSearchQuery(e.target.value)}
-          onKeyPress={handleKeyPress}
-          type="search"
-          placeholder="Search your manga"
-          className="px-4 py-2 ml-[30%] bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white"
-        />
-        <button
-          onClick={handleSearch}
-          className="ml-[0.1%] px-2 py-2.5 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white cursor-pointer"
-        >
-          <MdOutlineLocationSearching />
-        </button>
-        <button
-          onClick={handlePopularClick}
-          className="ml-[3%] px-2 py-2 flex flex-row items-center bg-pink-700 border border-pink-900 rounded-lg focus:outline-none focus:border-blue-500 text-white cursor-pointer"
-        >
-          <h1>Most Popular</h1>
-          <h1 className="ml-2"><BsFire /></h1>
-        </button>
-        <div className="ml-[3%] ">
-          <select
-            onChange={(e) => handleGenreSelect(e.target.value)}
-            className="px-4 py-2   bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white"
-          >
-            <option value="">Select Genre</option>
-            <option value="Action">Action</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Mystery">Mystery</option>
-            <option value="Sci-Fi">Sci-Fi</option>
-            <option value="Sci-Fi">Mystery</option>
-            <option value="Sci-Fi">Drama</option>
-            <option value="Sci-Fi">Suspense</option>
-            <option value="Sci-Fi">Romance</option>
-            <option value="Sci-Fi">Comedy</option>
-            <option value="Sci-Fi">Fantsy</option>
-            <option value="Sci-Fi">Sports</option>
-            {/* Add more options as needed */}
-          </select>
-        </div>
+        {isLargerThan800 ? (
+          <div className="flex items-center w-full justify-center">
+            <input
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyPress={handleKeyPress}
+              type="search"
+              placeholder="Search your manga"
+              className="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white"
+            />
+            <button
+              onClick={handleSearch}
+              className="ml-2 px-2 py-2.5 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white cursor-pointer"
+            >
+              <MdOutlineLocationSearching />
+            </button>
+            <button
+              onClick={handlePopularClick}
+              className="ml-3 px-2 py-2 flex flex-row items-center bg-pink-700 border border-pink-900 rounded-lg focus:outline-none focus:border-blue-500 text-white cursor-pointer"
+            >
+              <h1>Most Popular</h1>
+              <h1 className="ml-2"><BsFire /></h1>
+            </button>
+            <div className="ml-3">
+              <select
+                onChange={(e) => handleGenreSelect(e.target.value)}
+                className="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white"
+              >
+                <option value="">Select Genre</option>
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Drama">Drama</option>
+                <option value="Suspense">Suspense</option>
+                <option value="Romance">Romance</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Sports">Sports</option>
+                {/* Add more options as needed */}
+              </select>
+            </div>
+          </div>
+        ) : (
+          <Button ref={btnRef}  onClick={onOpen}>
+           <GiAbstract050  color="#CA385C" size={30}/>
+          </Button>
+        )}
       </div>
-      <div className="mt-[12%] flex flex-wrap justify-center items-center">
+      {!isLargerThan800 && (
+        <Drawer
+          isOpen={isOpen}
+          placement='right'
+          onClose={onClose}
+          finalFocusRef={btnRef}
+        >
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>Menu</DrawerHeader>
+            <DrawerBody>
+              <div className="w-full flex flex-row mb-2">
+                <input
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  type="search"
+                  placeholder="Search your manga"
+                  className="px-4 py-2 w-[85%] bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white"
+                />
+                <button
+                  onClick={handleSearch}
+                  className="w-[15%] px-2 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white cursor-pointer"
+                >
+                  <MdOutlineLocationSearching />
+                </button>
+              </div>
+              <button
+                onClick={handlePopularClick}
+                className="w-full mt-2 px-2 py-2 flex flex-row items-center bg-pink-700 border border-pink-900 rounded-lg focus:outline-none focus:border-blue-500 text-white cursor-pointer"
+              >
+                <h1>Most Popular</h1>
+                <h1 className="ml-2"><BsFire /></h1>
+              </button>
+              <select
+                onChange={(e) => handleGenreSelect(e.target.value)}
+                className="w-full mt-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white"
+              >
+                <option value="">Select Genre</option>
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Drama">Drama</option>
+                <option value="Suspense">Suspense</option>
+                <option value="Romance">Romance</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Sports">Sports</option>
+                {/* Add more options as needed */}
+              </select>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
+      )}
+      <div className="mt-[25%] lg:mt-[10%] flex flex-wrap justify-center items-center">
         <MangaCard anime={anime} />
       </div>
     </div>

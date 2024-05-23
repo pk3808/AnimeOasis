@@ -9,20 +9,21 @@ const About = () => {
         backgroundImage: `url(${bg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh",
+        height: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
         color: "#fff",
         textAlign: "center",
+        padding: "40px",
       }}
     >
       <Link to="/">
       <img
         src={logo}
         alt="Anime Oasis Logo"
-        style={{ width: "150px", marginBottom: "30px", marginTop: "10px" }}
+        style={{ width: "150px", }}
       />
       </Link>
       <h1
